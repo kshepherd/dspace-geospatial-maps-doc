@@ -4,6 +4,8 @@ With the introduction of the [GND data source and authority / relation represent
 in geospatial maps. The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
 implement open maps that comply with the DSpace license and don't require any special API or tile service access.
 
+## Usage
+
 ### Data types
 
 Points are currently parsed as [WKT latitude and longitude coordinates](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) with some
@@ -62,4 +64,3 @@ This map can be scoped by community or collection, and supports clustering.
 It is trivial to extend or reuse the `GeospatialMapComponent` for other uses beyond the 5 scenarios described above - for example, it can be used
 to easily display a static map in an about page, or in some usage statistics visualisations, and so on.
 
-## Usage
