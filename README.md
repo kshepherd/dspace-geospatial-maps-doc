@@ -6,6 +6,20 @@ in geospatial maps, in many different contexts.
 The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
 implement open maps that comply with the DSpace license and don't require any special API or tile service access.
 
+## Files
+
+**Components**
+
+* `src/app/shared/geospatial-map/` contains the core `GeospatialMap` component files
+* `src/app/item-page/simple/field-components/specific-field/geospatial` contains the `GeospatialItemFieldPage` component files
+* `src/app/browse-by/browse-by-geospatial-data/browse-by-geospatial-data.component.ts` is the "Browse-By" map component
+* `src/app/shared/object-geospatial-map/object-geospatial-map.component.ts` is the search results view mode that shows the map (as well as normal list)
+
+**Configuration**
+
+* See `geospatialMapViewer` config in angular default config for examples
+* For best use with search and browse, ensure there are appropriate search filters and facets set up for the metadata fields containing geospatial data (e.g. filter `point` indexing `dcterms.spatial`, referenced in a new discovery configuration called `geospatial`). This requires configuring `discovery.xml` in the DSpace spring configuration.
+
 ## Usage
 
 ### Data types
@@ -19,6 +33,8 @@ Bounding boxes are currently parsed as [GeoJSON](https://en.wikipedia.org/wiki/G
 
 ### Declarative usage:
 
+**Declaring the core component**
+
 If you have one or more points or bounding box rectangles, pass them in as lists of strings, in the formats as above.
 
 
@@ -30,6 +46,11 @@ If you have one or more points or bounding box rectangles, pass them in as lists
                          style="width: 100%;">
       </ds-geospatial-map>
 ```
+
+Optional inputs `facetValues` (observable) and `mapInfo` (see `GeospatialMapDetail` model) are for browse and search results, respectively
+as they need to provide more information about marker titles and click events.
+
+**Using in item pages**
 
 A new `GeospatialItemPageField` handles this from an item page, instead of using a generic item page field.
 
@@ -47,8 +68,6 @@ including virtual metadata fields.
     >
 ```
 
-Optional inputs `facetValues` (observable) and `mapInfo` (see `GeospatialMapDetail` model) are for browse and search results, respectively
-as they need to provide more information about marker titles and click events.
 ## Examples
 
 1. A map rendering a single point for a related GND subject (authority or relation), above an image depiction of another GND subject
