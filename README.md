@@ -10,6 +10,7 @@ implement open maps that comply with the DSpace license and don't require any sp
     ![A map rendering a single point for a related GND subject (authority or relation), above an image depiction of another GND subject](gnd-record-map.png)
 
 2. A map rendering a single point and bounding box (retrieved as supplementary data from Geonames DB) for a related GND subject (authority or relation)
+
    ![A map rendering a single point and bounding box (retrieved as supplementary data from Geonames DB) for a related GND subject (authority or relation)](gnd-record-map-bbox.png)
 
 3. A map rendering two points and a bounding box from plain metadata values stored with the item, plus a clustered view. The fields are configurable.
