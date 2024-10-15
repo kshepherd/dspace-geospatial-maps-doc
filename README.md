@@ -1,7 +1,9 @@
 # Rendering geospatial data in maps in DSpace 9
 
 With the introduction of the [GND data source and authority / relation representations](#TODO), it is now possible to render coordinates and polygons
-in geospatial maps. The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
+in geospatial maps, in many different contexts.
+
+The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
 implement open maps that comply with the DSpace license and don't require any special API or tile service access.
 
 ## Usage
@@ -27,6 +29,22 @@ If you have one or more points or bounding box rectangles, pass them in as lists
                          [layout]="'item'"
                          style="width: 100%;">
       </ds-geospatial-map>
+```
+
+A new `GeospatialItemPageField` handles this from an item page, instead of using a generic item page field.
+
+The values of all the fields provided will be flattened into arrays for marker / box drawing, allowing for many different sources of point data
+including virtual metadata fields.
+
+```
+    <!-- Below is an example of how to render one or more lat/lng points and/or bounding box rectangles
+         in a tiled map viewer. Set 'cluster' to true for marker clustering -->
+    <ds-geospatial-item-page-field [item]="object"
+                                   [label]="'item.page.places'"
+                                   [pointFields]="['dcterms.spatial']"
+                                   [bboxFields]="['gnd.spatial.bbox']"
+                                   [cluster]="true"
+    >
 ```
 
 Optional inputs `facetValues` (observable) and `mapInfo` (see `GeospatialMapDetail` model) are for browse and search results, respectively
