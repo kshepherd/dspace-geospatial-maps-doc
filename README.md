@@ -6,23 +6,7 @@ in geospatial maps, in many different contexts.
 The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
 implement open maps that comply with the DSpace license and don't require any special API or tile service access.
 
-## Files added / changed
-
-### Components and models
-
-* `src/app/shared/geospatial-map/` contains the core `GeospatialMap` component files and models
-* `src/app/item-page/simple/field-components/specific-field/geospatial` contains the `GeospatialItemFieldPage` component files
-* `src/app/browse-by/browse-by-geospatial-data/browse-by-geospatial-data.component.ts` is the "Browse-By" map component (disabled by default)
-* `src/app/shared/object-geospatial-map/object-geospatial-map.component.ts` is the search results view mode that shows a map of clustered markers for items with geospatial data, as well as the [full] normal list of search result items.
-
-### Other files
-
-* `src/app/shared/utils/geospatial.functions.ts` is a set of utility functions for use in multiple components
-* Configuration files are updated to include the new frontend configuration properties:
-    * `src/config/app-config.interface.ts`
-    * `src/config/default-app-config.ts`
-    * `src/environments/environment.ts`
-    * `src/environments/environment.test.ts`       
+<img src="demo.png" alt="demo item page map view"/>
 
 ## Configuration
 
@@ -59,7 +43,7 @@ The OpenStreetMap.Mapnik default tile provider is free, open and does not requir
 
 The value for `tileProviders` is an array because it is possible to include multiple tile layers in order. For example, I've successfully used OpenRailwayMap on top of Mapnik:
 
-
+<img src="multiple-tile-layers.png" alt="A map demonstrating multiple tile layers / providers in a leaflet map" width="500" src="multiple-tile-layers.png" />
 
 ## Usage
 
@@ -113,31 +97,50 @@ including virtual metadata fields.
 
 1. A map rendering a single point for a related GND subject (authority or relation), above an image depiction of another GND subject
 
-![A map rendering a single point for a related GND subject (authority or relation), above an image depiction of another GND subject](gnd-record-map.png)
+<img alt="A map rendering a single point for a related GND subject (authority or relation), above an image depiction of another GND subject" src="gnd-record-map.png" width="500"/>
 
 2. A map rendering a single point and bounding box (retrieved as supplementary data from Geonames DB) for a related GND subject (authority or relation)
 
-![A map rendering a single point and bounding box (retrieved as supplementary data from Geonames DB) for a related GND subject (authority or relation)](gnd-record-map-bbox.png)
+<img alt="A map rendering a single point and bounding box (retrieved as supplementary data from Geonames DB) for a related GND subject (authority or relation)" src="gnd-record-map-bbox.png" width="500"/>
+
 
 3. A map rendering two points and a bounding box from plain metadata values stored with the item, plus a clustered view. The fields are configurable.
 
-![A map rendering two points and a bounding box from plain metadata values stored with the item](item-page-map.png)
+<img alt="A map rendering two points and a bounding box from plain metadata values stored with the item" src="item-page-map.png" width="500"/>
 
-![A map rendering a cluster of two points and a bounding box from plain metadata values stored with the item](item-page-map-cluster.png)
+<img alt="A map rendering a cluster of two points and a bounding box from plain metadata values stored with the item" src="item-page-map-cluster.png" width="500"/>
 
 4. A map "view mode" for search results (see the additional view mode toggle button in the upper left) shows point(s) for each item matching a configured
 geospatial filter. The markers, when clicked, will redirect to the item page. This map also supports marker clustering.
 (This is disabled by default but can be enabled for main search results)
 
-![A map with markers representing items in search result lists](search-results-map.png)
+<img alt="A map with markers representing items in search result lists" alt="search-results-map.png" width="100"/>
 
 5. A browse map for displaying facet values as geospatial points. The markers, when clicked, redirect to a search results page filtered by that point.
 This map can be scoped by community or collection, and supports clustering.
 
-![A map with a marker and a marker cluster represending facets (one or more search filter results)](browse-map.png)
+<img alt="A map with a marker and a marker cluster represending facets (one or more search filter results)" src="browse-map.png" width="100"/>
+
+## Files added / changed
+
+### Components and models
+
+* `src/app/shared/geospatial-map/` contains the core `GeospatialMap` component files and models
+* `src/app/item-page/simple/field-components/specific-field/geospatial` contains the `GeospatialItemFieldPage` component files
+* `src/app/browse-by/browse-by-geospatial-data/browse-by-geospatial-data.component.ts` is the "Browse-By" map component (disabled by default)
+* `src/app/shared/object-geospatial-map/object-geospatial-map.component.ts` is the search results view mode that shows a map of clustered markers for items with geospatial data, as well as the [full] normal list of search result items.
+
+### Other files
+
+* `src/app/shared/utils/geospatial.functions.ts` is a set of utility functions for use in multiple components
+* Configuration files are updated to include the new frontend configuration properties:
+    * `src/config/app-config.interface.ts`
+    * `src/config/default-app-config.ts`
+    * `src/environments/environment.ts`
+    * `src/environments/environment.test.ts`       
 
 
-**Further extension**:
+## Further extension
 
 It is trivial to extend or reuse the `GeospatialMapComponent` for other uses beyond the 5 scenarios described above - for example, it can be used
 to easily display a static map in an about page, an item representation, authority representation, or in some usage statistics visualisations, and so on.
