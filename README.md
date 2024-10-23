@@ -1,4 +1,4 @@
-# Rendering geospatial data in maps in DSpace 9
+# Rendering geospatial data in maps for DSpace 9
 
 With the introduction of the [GND data source and authority / relation representations](#TODO), it is now possible to render coordinates and polygons
 in geospatial maps, in many different contexts.
@@ -6,20 +6,60 @@ in geospatial maps, in many different contexts.
 The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
 implement open maps that comply with the DSpace license and don't require any special API or tile service access.
 
-## Files
+## Files added / changed
 
-**Components**
+### Components and models
 
 * `src/app/shared/geospatial-map/` contains the core `GeospatialMap` component files and models
 * `src/app/item-page/simple/field-components/specific-field/geospatial` contains the `GeospatialItemFieldPage` component files
 * `src/app/browse-by/browse-by-geospatial-data/browse-by-geospatial-data.component.ts` is the "Browse-By" map component (disabled by default)
 * `src/app/shared/object-geospatial-map/object-geospatial-map.component.ts` is the search results view mode that shows a map of clustered markers for items with geospatial data, as well as the [full] normal list of search result items.
 
-**Configuration**
+### Other files
 
-* See `geospatialMapViewer` config in dspace-angular `default-app-config.ts` for examples
-* For best use with search and browse, ensure there are appropriate search filters and facets set up for the metadata fields containing geospatial data (e.g. filter `point` indexing `dcterms.spatial`, referenced in a new discovery configuration called `geospatial`). This requires configuring `discovery.xml` in the DSpace spring configuration.
-* The DSpace backend branch of this PR contains example discovery filters and also a useful 'has geospatial metadata' boolean filter which works similar to the 'has original content' filter, so that it is easy to narrow a search down to all items that *could* be drawn on a map
+* `src/app/shared/utils/geospatial.functions.ts` is a set of utility functions for use in multiple components
+* Configuration files are updated to include the new frontend configuration properties:
+    * `src/config/app-config.interface.ts`
+    * `src/config/default-app-config.ts`
+    * `src/environments/environment.ts`
+    * `src/environments/environment.test.ts`       
+
+## Configuration
+
+See `geospatialMapViewer` config in dspace-angular `default-app-config.ts` for examples of frontend configuration of tile provider, map options, and enabling the search and browse maps.
+
+```
+  geospatialMapViewer: GeospatialMapConfig = {
+    spatialMetadataFields: [
+      'dcterms.spatial',
+    ],
+    spatialFacetDiscoveryConfiguration: 'geospatial',
+    spatialPointFilterName: 'point',
+    enableSearchViewMode: false,d
+    enableBrowseMap: false,
+    tileProviders: [
+      'OpenStreetMap.Mapnik',
+    ],
+  };
+```
+
+**Discovery configuration**
+For best use with search and browse, ensure there are appropriate search filters and facets set up for the metadata fields containing geospatial data (e.g. filter `point` indexing `dcterms.spatial`, referenced in a new discovery configuration called `geospatial`). This requires configuring `discovery.xml` in the DSpace spring configuration.
+
+The [DSpace backend branch of this PR](#TODO) contains example discovery filters and also a useful 'has geospatial metadata' boolean filter which works similar to the 'has original content' filter, so that it is easy to narrow a search down to all items that *could* be drawn on a map
+
+Tips:
+* For the browse map to work, ensure the `geospatial` configuration is uncommented and named in `discovery.xml`, or some other configuration that includes the `searchFilterGeospatialPoint` filter and facet. The browse map essentially is a view on facet values for the `point` facet. The discovery configuration is named `geospatial` by default but the name is arbitrary and can be configured for the frontend in `geospatialMapViewer` config.
+* For links from the browse map to work, it is recommended to include the `searchFilterGeospatialPoint` with your default search configuration, as clicking a marker on the browse page will redirect to a search filtered by that point (you could also customise which search configuration is used on marker click)
+
+**Tiles and tile providers**
+Any of the following tile providers can be configured (note that some may require authorized / API access): https://leaflet-extras.github.io/leaflet-providers/preview/.
+
+The OpenStreetMap.Mapnik default tile provider is free, open and does not require credentials of any sort.
+
+The value for `tileProviders` is an array because it is possible to include multiple tile layers in order. For example, I've successfully used OpenRailwayMap on top of Mapnik:
+
+
 
 ## Usage
 
