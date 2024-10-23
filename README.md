@@ -1,5 +1,9 @@
 # Rendering geospatial data in maps for DSpace 9
 
+Open PR links:
+* https://github.com/DSpace/dspace-angular/pull/3540
+* https://github.com/DSpace/DSpace/pull/9918
+
 With the introduction of the [GND data source and authority / relation representations](#TODO), it is now possible to render coordinates and polygons
 in geospatial maps, in many different contexts.
 
