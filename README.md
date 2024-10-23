@@ -10,15 +10,16 @@ implement open maps that comply with the DSpace license and don't require any sp
 
 **Components**
 
-* `src/app/shared/geospatial-map/` contains the core `GeospatialMap` component files
+* `src/app/shared/geospatial-map/` contains the core `GeospatialMap` component files and models
 * `src/app/item-page/simple/field-components/specific-field/geospatial` contains the `GeospatialItemFieldPage` component files
-* `src/app/browse-by/browse-by-geospatial-data/browse-by-geospatial-data.component.ts` is the "Browse-By" map component
-* `src/app/shared/object-geospatial-map/object-geospatial-map.component.ts` is the search results view mode that shows the map (as well as normal list)
+* `src/app/browse-by/browse-by-geospatial-data/browse-by-geospatial-data.component.ts` is the "Browse-By" map component (disabled by default)
+* `src/app/shared/object-geospatial-map/object-geospatial-map.component.ts` is the search results view mode that shows a map of clustered markers for items with geospatial data, as well as the [full] normal list of search result items.
 
 **Configuration**
 
-* See `geospatialMapViewer` config in angular default config for examples
+* See `geospatialMapViewer` config in dspace-angular `default-app-config.ts` for examples
 * For best use with search and browse, ensure there are appropriate search filters and facets set up for the metadata fields containing geospatial data (e.g. filter `point` indexing `dcterms.spatial`, referenced in a new discovery configuration called `geospatial`). This requires configuring `discovery.xml` in the DSpace spring configuration.
+* The DSpace backend branch of this PR contains example discovery filters and also a useful 'has geospatial metadata' boolean filter which works similar to the 'has original content' filter, so that it is easy to narrow a search down to all items that *could* be drawn on a map
 
 ## Usage
 
@@ -99,5 +100,5 @@ This map can be scoped by community or collection, and supports clustering.
 **Further extension**:
 
 It is trivial to extend or reuse the `GeospatialMapComponent` for other uses beyond the 5 scenarios described above - for example, it can be used
-to easily display a static map in an about page, or in some usage statistics visualisations, and so on.
+to easily display a static map in an about page, an item representation, authority representation, or in some usage statistics visualisations, and so on.
 
