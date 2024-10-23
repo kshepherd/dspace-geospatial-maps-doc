@@ -114,12 +114,12 @@ including virtual metadata fields.
 geospatial filter. The markers, when clicked, will redirect to the item page. This map also supports marker clustering.
 (This is disabled by default but can be enabled for main search results)
 
-<img alt="A map with markers representing items in search result lists" alt="search-results-map.png" width="100"/>
+<img alt="A map with markers representing items in search result lists" src="search-results-map.png" width="500"/>
 
 5. A browse map for displaying facet values as geospatial points. The markers, when clicked, redirect to a search results page filtered by that point.
 This map can be scoped by community or collection, and supports clustering.
 
-<img alt="A map with a marker and a marker cluster represending facets (one or more search filter results)" src="browse-map.png" width="100"/>
+<img alt="A map with a marker and a marker cluster represending facets (one or more search filter results)" src="browse-map.png" width="500"/>
 
 ## Files added / changed
 
