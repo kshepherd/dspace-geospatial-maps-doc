@@ -56,6 +56,8 @@ The value for `tileProviders` is an array because it is possible to include mult
 Points are currently parsed as [WKT latitude and longitude coordinates](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) with some
 cleanup occuring at the time of parsing to ensure that slighlty non-compliant values still work (e.g. capitalisation, inclusion of + operator).
 
+Example value: `Point ( +008.660000 +047.336111 )`
+
 It is then converted to GeoJSON.
 
 Bounding boxes are currently parsed as [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON)
