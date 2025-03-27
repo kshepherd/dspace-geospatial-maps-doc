@@ -93,13 +93,18 @@ A new `GeospatialItemPageField` handles this from an item page, instead of using
 The values of all the fields provided will be flattened into arrays for marker / box drawing, allowing for many different sources of point data
 including virtual metadata fields.
 
+This can be enabled in `config.yml` with the `geospatialMapViewer.enableItemPageFields` config property.
+
+You may use the same field for point and bounding box data - only valid points will be shown as markers, and only valid shapes will be drawn as rectangles.
+You may also use different fields. The default for both is `dcterms.spatial`
+
 ```
     <!-- Below is an example of how to render one or more lat/lng points and/or bounding box rectangles
          in a tiled map viewer. Set 'cluster' to true for marker clustering -->
     <ds-geospatial-item-page-field [item]="object"
                                    [label]="'item.page.places'"
                                    [pointFields]="['dcterms.spatial']"
-                                   [bboxFields]="['gnd.spatial.bbox']"
+                                   [bboxFields]="['dcterms.spatial']"
                                    [cluster]="true"
     >
 ```
