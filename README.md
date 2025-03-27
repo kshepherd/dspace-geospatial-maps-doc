@@ -4,8 +4,7 @@ Open PR links:
 * https://github.com/DSpace/dspace-angular/pull/3540
 * https://github.com/DSpace/DSpace/pull/9918
 
-With the introduction of the [GND data source and authority / relation representations](#TODO), it is now possible to render coordinates and polygons
-in geospatial maps, in many different contexts.
+It is now possible to render coordinates and polygons in geospatial maps, in many different contexts.
 
 The [leaflet.js](https://leafletjs.com/reference.html) map library is used along with the OpenStreetMaps Mapnik tile provider to
 implement open maps that comply with the DSpace license and don't require any special API or tile service access.
