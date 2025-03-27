@@ -56,11 +56,16 @@ The value for `tileProviders` is an array because it is possible to include mult
 Points are currently parsed as [WKT latitude and longitude coordinates](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry) with some
 cleanup occuring at the time of parsing to ensure that slighlty non-compliant values still work (e.g. capitalisation, inclusion of + operator).
 
-Example value: `Point ( +008.660000 +047.336111 )`
+Example "point" value: `Point ( +008.660000 +047.336111 )`
 
 It is then converted to GeoJSON.
 
 Bounding boxes are currently parsed as [GeoJSON](https://en.wikipedia.org/wiki/GeoJSON)
+
+Example bounding box value: `{east=8.71094042109626, south=47.4145254755548, north=47.4679836625501, west=8.65564642621126, accuracyLevel=0}`
+
+When a map is rendered, if there is 1 point and 1 bounding box, it will auto zoom and centre to show the box.
+If there is more than 1 point, or no bounding box, the map will try to zoom and centre in a way that fits all points on the view.
 
 ### Declarative usage:
 
